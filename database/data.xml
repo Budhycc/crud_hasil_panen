@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.1
+- https://www.phpmyadmin.net
+-
+- Host: localhost
+- Generation Time: Jun 27, 2023 at 11:11 PM
+- Server version: 8.0.28
+- PHP Version: 8.2.6
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="data" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="desa">
+                CREATE TABLE `desa` (
+                  `kd_desa` bigint NOT NULL AUTO_INCREMENT,
+                  `nama_desa` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+                  PRIMARY KEY (`kd_desa`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="hasil_panen">
+                CREATE TABLE `hasil_panen` (
+                  `kd_hasil` bigint NOT NULL AUTO_INCREMENT,
+                  `kd_ptn` bigint NOT NULL,
+                  `kd_kom` bigint NOT NULL,
+                  `kd_desa` bigint NOT NULL,
+                  `jumlah_panen` int NOT NULL,
+                  `tanggal` date DEFAULT NULL,
+                  PRIMARY KEY (`kd_hasil`),
+                  KEY `kd_ptn` (`kd_ptn`,`kd_kom`),
+                  KEY `kd_kom` (`kd_kom`),
+                  KEY `kd_desa` (`kd_desa`),
+                  CONSTRAINT `hasil_panen_ibfk_1` FOREIGN KEY (`kd_ptn`) REFERENCES `petani` (`kd_pet`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `hasil_panen_ibfk_2` FOREIGN KEY (`kd_kom`) REFERENCES `komoditi` (`kd_komoditi`) ON DELETE CASCADE ON UPDATE CASCADE,
+                  CONSTRAINT `hasil_panen_ibfk_3` FOREIGN KEY (`kd_desa`) REFERENCES `petani` (`kd_desa`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=10013 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="komoditi">
+                CREATE TABLE `komoditi` (
+                  `kd_komoditi` bigint NOT NULL AUTO_INCREMENT,
+                  `nama_kom` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+                  `ket` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+                  PRIMARY KEY (`kd_komoditi`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=1005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="petani">
+                CREATE TABLE `petani` (
+                  `kd_pet` bigint NOT NULL AUTO_INCREMENT,
+                  `password` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+                  `nama_full` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+                  `nik` varchar(16) COLLATE utf8mb4_general_ci NOT NULL,
+                  `no_hp` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+                  `kd_desa` bigint NOT NULL,
+                  `level` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+                  PRIMARY KEY (`kd_pet`),
+                  UNIQUE KEY `nik` (`nik`),
+                  KEY `kd_desa` (`kd_desa`),
+                  CONSTRAINT `petani_ibfk_1` FOREIGN KEY (`kd_desa`) REFERENCES `desa` (`kd_desa`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=1005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'data'
+    -->
+    <database name="data">
+        <!-- Table desa -->
+        <table name="desa">
+            <column name="kd_desa">1001</column>
+            <column name="nama_desa">Berastagi</column>
+        </table>
+        <table name="desa">
+            <column name="kd_desa">1002</column>
+            <column name="nama_desa">Lapoa</column>
+        </table>
+        <table name="desa">
+            <column name="kd_desa">1003</column>
+            <column name="nama_desa">Asingi</column>
+        </table>
+        <table name="desa">
+            <column name="kd_desa">1004</column>
+            <column name="nama_desa">Tinanggea</column>
+        </table>
+        <!-- Table hasil_panen -->
+        <table name="hasil_panen">
+            <column name="kd_hasil">10007</column>
+            <column name="kd_ptn">1003</column>
+            <column name="kd_kom">1001</column>
+            <column name="kd_desa">1003</column>
+            <column name="jumlah_panen">200</column>
+            <column name="tanggal">2023-06-20</column>
+        </table>
+        <table name="hasil_panen">
+            <column name="kd_hasil">10008</column>
+            <column name="kd_ptn">1003</column>
+            <column name="kd_kom">1004</column>
+            <column name="kd_desa">1003</column>
+            <column name="jumlah_panen">200</column>
+            <column name="tanggal">2023-06-20</column>
+        </table>
+        <table name="hasil_panen">
+            <column name="kd_hasil">10009</column>
+            <column name="kd_ptn">1002</column>
+            <column name="kd_kom">1002</column>
+            <column name="kd_desa">1001</column>
+            <column name="jumlah_panen">700</column>
+            <column name="tanggal">2023-06-20</column>
+        </table>
+        <table name="hasil_panen">
+            <column name="kd_hasil">10010</column>
+            <column name="kd_ptn">1003</column>
+            <column name="kd_kom">1001</column>
+            <column name="kd_desa">1003</column>
+            <column name="jumlah_panen">200</column>
+            <column name="tanggal">2023-06-20</column>
+        </table>
+        <table name="hasil_panen">
+            <column name="kd_hasil">10011</column>
+            <column name="kd_ptn">1002</column>
+            <column name="kd_kom">1003</column>
+            <column name="kd_desa">1001</column>
+            <column name="jumlah_panen">300</column>
+            <column name="tanggal">2021-07-22</column>
+        </table>
+        <table name="hasil_panen">
+            <column name="kd_hasil">10012</column>
+            <column name="kd_ptn">1002</column>
+            <column name="kd_kom">1004</column>
+            <column name="kd_desa">1001</column>
+            <column name="jumlah_panen">2000</column>
+            <column name="tanggal">2020-07-22</column>
+        </table>
+        <!-- Table komoditi -->
+        <table name="komoditi">
+            <column name="kd_komoditi">1001</column>
+            <column name="nama_kom">Jagung</column>
+            <column name="ket">Jagung Manis</column>
+        </table>
+        <table name="komoditi">
+            <column name="kd_komoditi">1002</column>
+            <column name="nama_kom">Padi</column>
+            <column name="ket">Beras Ketan</column>
+        </table>
+        <table name="komoditi">
+            <column name="kd_komoditi">1003</column>
+            <column name="nama_kom">Kelapa</column>
+            <column name="ket">Sawit</column>
+        </table>
+        <table name="komoditi">
+            <column name="kd_komoditi">1004</column>
+            <column name="nama_kom">Semangka</column>
+            <column name="ket">Tanpa Biji</column>
+        </table>
+        <!-- Table petani -->
+        <table name="petani">
+            <column name="kd_pet">1001</column>
+            <column name="password">1234567890123456</column>
+            <column name="nama_full">Budi Setiawan</column>
+            <column name="nik">1234567890123456</column>
+            <column name="no_hp">123456789012</column>
+            <column name="kd_desa">1002</column>
+            <column name="level">ADMIN</column>
+        </table>
+        <table name="petani">
+            <column name="kd_pet">1002</column>
+            <column name="password">1207042402970001</column>
+            <column name="nama_full">Raskita Br Surbakti</column>
+            <column name="nik">1207042402970001</column>
+            <column name="no_hp">085297375472</column>
+            <column name="kd_desa">1001</column>
+            <column name="level">ADMIN</column>
+        </table>
+        <table name="petani">
+            <column name="kd_pet">1003</column>
+            <column name="password">0852977547221234</column>
+            <column name="nama_full">Rasimin</column>
+            <column name="nik">0852977547221234</column>
+            <column name="no_hp">098765432112</column>
+            <column name="kd_desa">1003</column>
+            <column name="level">PETANI</column>
+        </table>
+    </database>
+</pma_xml_export>
